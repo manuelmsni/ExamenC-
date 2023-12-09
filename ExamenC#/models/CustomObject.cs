@@ -20,5 +20,13 @@ namespace ExamenC_.models
             Name = Name;
         }
         public CustomObject() { }
+        public bool Equals(CustomObject x)
+        {
+            return x.Id == Id;
+        }
+        public int GetHashCode(CustomObject obj)
+        {
+            return (obj.Id).GetHashCode();
+        }
     }
 }

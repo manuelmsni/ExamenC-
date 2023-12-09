@@ -3,18 +3,18 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace ExamenC_
 {
-    public partial class MainView : Form
+    public partial class MainForm : Form
     {
-        private static MainView Instance { get; set; }
+        private static MainForm Instance { get; set; }
         private ToolStripStatusLabel _statusLabel { get; set; }
-        private MainView()
+        private MainForm()
         {
             InitializeComponent();
             InnitCustom();
         }
-        public static MainView GetInstance()
+        public static MainForm GetInstance()
         {
-            if (Instance == null) Instance = new MainView();
+            if (Instance == null) Instance = new MainForm();
             return Instance;
         }
 

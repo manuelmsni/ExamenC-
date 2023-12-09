@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ExamenC_.utils
+﻿namespace ExamenC_.utils
 {
-    internal class Constants
+    public class Constants
     {
+
         // API Constants
         public const string BASE_URL_API = "";
 
@@ -23,5 +18,6 @@ namespace ExamenC_.utils
         public const string COLUMN_FOR_NAME = "name";
 
         // Other
+        public const string ErrorLogFile = "Errors.log";
     }
 }

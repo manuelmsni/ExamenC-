@@ -1,6 +1,6 @@
 ﻿namespace ExamenC_
 {
-    partial class MainView
+    partial class MainForm
     {
         /// <summary>
         ///  Required designer variable.
@@ -39,13 +39,13 @@
             _statusStrip.TabIndex = 0;
             _statusStrip.Text = "statusStrip1";
             // 
-            // Form1
+            // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
             Controls.Add(_statusStrip);
-            Name = "Form1";
+            Name = "MainForm";
             Text = "Form1";
             ResumeLayout(false);
             PerformLayout();
