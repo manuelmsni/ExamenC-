@@ -3,7 +3,7 @@ namespace ExamenC_.clients
 {
     public class HttpJsonClient<T> where T : class, new()
     {
-        public static async Task<T> RequestCountryDataAsync(string baseAPI, string URI)
+        public static async Task<T> RequestDataAsync(string baseAPI, string URI)
         {
             using (HttpClient httpClient = new HttpClient())
             {

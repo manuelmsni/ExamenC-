@@ -4,7 +4,8 @@
     {
 
         // API Constants
-        public const string BASE_URL_API = "";
+        public const string BASE_URL_API = "https://pokeapi.co/api/v2/";
+        public const string CUSTOM_OBJECT_API = "pokemon";
 
         // DATABASE Constants
         public const string CONNECTION_STRING = "server=localhost;" +

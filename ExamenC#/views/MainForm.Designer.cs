@@ -29,6 +29,10 @@
         private void InitializeComponent()
         {
             _statusStrip = new StatusStrip();
+            menuStrip1 = new MenuStrip();
+            customObjectsToolStripMenuItem = new ToolStripMenuItem();
+            MainContainer = new FlowLayoutPanel();
+            menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // _statusStrip
@@ -39,14 +43,43 @@
             _statusStrip.TabIndex = 0;
             _statusStrip.Text = "statusStrip1";
             // 
+            // menuStrip1
+            // 
+            menuStrip1.Items.AddRange(new ToolStripItem[] { customObjectsToolStripMenuItem });
+            menuStrip1.Location = new Point(0, 0);
+            menuStrip1.Name = "menuStrip1";
+            menuStrip1.Size = new Size(800, 24);
+            menuStrip1.TabIndex = 1;
+            menuStrip1.Text = "MenuStrip";
+            // 
+            // customObjectsToolStripMenuItem
+            // 
+            customObjectsToolStripMenuItem.Name = "customObjectsToolStripMenuItem";
+            customObjectsToolStripMenuItem.Size = new Size(101, 20);
+            customObjectsToolStripMenuItem.Text = "CustomObjects";
+            customObjectsToolStripMenuItem.Click += MenuCustomObjects_Click;
+            // 
+            // MainContainer
+            // 
+            MainContainer.Dock = DockStyle.Fill;
+            MainContainer.Location = new Point(0, 24);
+            MainContainer.Name = "MainContainer";
+            MainContainer.Size = new Size(800, 404);
+            MainContainer.TabIndex = 2;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(MainContainer);
             Controls.Add(_statusStrip);
+            Controls.Add(menuStrip1);
+            MainMenuStrip = menuStrip1;
             Name = "MainForm";
             Text = "Form1";
+            menuStrip1.ResumeLayout(false);
+            menuStrip1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -54,5 +87,8 @@
         #endregion
 
         private StatusStrip _statusStrip;
+        private MenuStrip menuStrip1;
+        private ToolStripMenuItem customObjectsToolStripMenuItem;
+        private FlowLayoutPanel MainContainer;
     }
 }
