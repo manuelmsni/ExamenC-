@@ -4,11 +4,11 @@ namespace ExamenC_.utils
 {
     public class FileManager
     {
-        public static int? SaveFile(string path, string text)
+        public static int? SaveFile(string path, string text, bool append)
         {
             try
             {
-                using (StreamWriter sw = new StreamWriter(path))
+                using (StreamWriter sw = new StreamWriter(path, append))
                 {
                     sw.Write(text);
                 }
@@ -21,7 +21,7 @@ namespace ExamenC_.utils
             }
             return null;
         }
-        public static string LoadFile(string path)
+        public static string ReadFile(string path)
         {
             try
             {
@@ -35,6 +35,18 @@ namespace ExamenC_.utils
                 ErrorManager.Register(ex);
             }
             return null;
+        }
+        static string[] ReadLines(string path)
+        {
+            if (File.Exists(path))
+            {
+                return File.ReadAllLines(path);
+            }
+            else
+            {
+                MessageManager.ShowMessaje("No encontrado", $"No se a encontrado el archivo {path}");
+                return null;
+            }
         }
         public static void DeleteFile(string path)
         {

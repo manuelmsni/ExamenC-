@@ -64,11 +64,56 @@ namespace ExamenC_.dao
         }
         public CustomObject SelectObject(int id)
         {
-            throw new NotImplementedException();
+            CustomObject result = null;
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(Constants.CONNECTION_STRING))
+                {
+                    conn.Open();
+                    MySqlCommand mySqlCommand = conn.CreateCommand();
+                    mySqlCommand.CommandText = $"SELECT {Constants.COLUMN_FOR_ID}, {Constants.COLUMN_FOR_NAME} FROM {Constants.TABLE_NAME} WHERE {Constants.COLUMN_FOR_ID} = @id";
+                    mySqlCommand.Parameters.AddWithValue("@id", id);
+
+                    using (MySqlDataReader reader = mySqlCommand.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            result = new CustomObject
+                            {
+                                Id = reader.GetInt32(0),
+                                Name = reader.GetString(1),
+                            };
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+            return result;
         }
         public bool UpdateObject(CustomObject obj)
         {
-            throw new NotImplementedException();
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(Constants.CONNECTION_STRING))
+                {
+                    conn.Open();
+                    MySqlCommand mySqlCommand = conn.CreateCommand();
+                    mySqlCommand.CommandText = $"UPDATE {Constants.TABLE_NAME} SET {Constants.COLUMN_FOR_NAME} = @name WHERE {Constants.COLUMN_FOR_ID} = @id";
+                    mySqlCommand.Parameters.AddWithValue("@name", obj.Name);
+                    mySqlCommand.Parameters.AddWithValue("@id", obj.Id);
+
+                    int rowsAffected = mySqlCommand.ExecuteNonQuery();
+                    return rowsAffected > 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+            return false;
         }
     }
 }

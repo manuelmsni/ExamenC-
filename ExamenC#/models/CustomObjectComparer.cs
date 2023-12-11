@@ -15,8 +15,8 @@ namespace ExamenC_.models
         }
         public int GetHashCode(CustomObject obj)
         {
-                // Obtener un código hash basado en el nombre
-                return (obj.Name).GetHashCode();
+            // Obtener un código hash basado en el nombre
+            return (obj.Name).GetHashCode();
         }
     }
 }
