@@ -17,6 +17,7 @@
         public const string TABLE_NAME = "MostVisited";
         public const string COLUMN_FOR_ID = "id";
         public const string COLUMN_FOR_NAME = "name";
+        public const string COLUMN_FOR_COUNT = "count";
 
         // Other
         public const string ErrorLogFile = "Errors.log";

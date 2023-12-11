@@ -115,5 +115,52 @@ namespace ExamenC_.dao
             }
             return false;
         }
+
+        public bool UpsertObject(CustomObject obj)
+        {
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(Constants.CONNECTION_STRING))
+                {
+                    conn.Open();
+                    MySqlCommand selectCommand = conn.CreateCommand();
+                    selectCommand.CommandText = $"SELECT {Constants.COLUMN_FOR_ID}, {Constants.COLUMN_FOR_COUNT} FROM {Constants.TABLE_NAME} WHERE {Constants.COLUMN_FOR_ID} = @id";
+                    selectCommand.Parameters.AddWithValue("@id", obj.Id);
+
+                    int currentCount = 0;
+
+                    using (MySqlDataReader reader = selectCommand.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            currentCount = reader.GetInt32(1);
+                        }
+                    }
+
+                    if (currentCount > 0)
+                    {
+                        MySqlCommand updateCommand = conn.CreateCommand();
+                        updateCommand.CommandText = $"UPDATE {Constants.TABLE_NAME} SET {Constants.COLUMN_FOR_COUNT} = @count WHERE {Constants.COLUMN_FOR_ID} = @id";
+                        updateCommand.Parameters.AddWithValue("@count", currentCount + 1);
+                        updateCommand.Parameters.AddWithValue("@id", obj.Id);
+                        updateCommand.ExecuteNonQuery();
+                    }
+                    else
+                    {
+                        MySqlCommand insertCommand = conn.CreateCommand();
+                        insertCommand.CommandText = $"INSERT INTO {Constants.TABLE_NAME} ({Constants.COLUMN_FOR_ID}, {Constants.COLUMN_FOR_COUNT}) VALUES (@id, 1)";
+                        insertCommand.Parameters.AddWithValue("@id", obj.Id);
+                        insertCommand.ExecuteNonQuery();
+                    }
+
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                return false;
+            }
+        }
     }
 }
